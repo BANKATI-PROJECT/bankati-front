@@ -166,24 +166,64 @@ body {
 
 /* Footer Styles */
 .footer {
-    background-color: #d3d0d0;
-    padding: 10px 0;
+    background: linear-gradient(135deg, #ff7f00, #ffaf50); /* Epic gradient background */
+    padding: 40px 20px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    position: relative;
+    z-index: 10; /* Ensure footer stays above other elements */
+    color: white;
 }
 
 .footer p {
-    font-size: 0.9rem;
+    font-size: 1rem;
+    margin: 0;
+    padding: 10px 0;
+    line-height: 1.5;
 }
 
 .footer a {
-    color: #07c5ff;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .footer a:hover {
+    color: #07c5ff;
+    transform: scale(1.05);
     text-decoration: underline;
+}
+
+.footer .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.footer .footer-links a {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer .footer-social {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer .footer-social a {
+    font-size: 1.5rem;
+    color: #fff;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer .footer-social a:hover {
+    color: #07c5ff;
+    transform: scale(1.1);
 }
 
 /* Responsive Styles */
@@ -224,5 +264,14 @@ body {
     .agency-card {
         width: 100%;
         max-width: none;
+    }
+
+    .footer .footer-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer .footer-social {
+        gap: 15px;
     }
 }

@@ -1,0 +1,63 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav [opened]="isSidenavOpened" mode="push" class="sidebar">
+      <div class="sidebar-content">
+        <div class="quick-links">
+          <button mat-button (click)="navigateToBills()">Pay Bills</button>
+          <button mat-button (click)="navigateToTransfer()">Transfer Money</button>
+          <button mat-button (click)="navigateToCards()">My Cards</button>
+          <button mat-button (click)="navigateToSecurity()">Security Settings</button>
+        </div>
+  
+        <div class="notifications">
+          <h3>Notifications</h3>
+          <ul>
+            <li *ngFor="let notification of user.notifications">
+              {{ notification.message }} - {{ notification.date }}
+            </li>
+          </ul>
+        </div>
+  
+        <div class="preferences">
+          <h3>Account Preferences</h3>
+          <button mat-button (click)="navigateToPreferences()">Change Preferences</button>
+        </div>
+  
+        <div class="security-alerts">
+          <h3>Recent Security Alerts</h3>
+          <ul>
+            <li *ngFor="let alert of user.securityAlerts">
+              {{ alert.date }} - {{ alert.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </mat-sidenav>
+  
+    <mat-sidenav-content [class.sidenav-opened]="isSidenavOpened">
+      <div class="profile-page">
+        <button mat-icon-button class="toggle-button" (click)="toggleSidenav()">
+          <mat-icon>{{ isSidenavOpened ? 'arrow_back' : 'menu' }}</mat-icon>
+        </button>
+  
+        <div class="profile-overview">
+          <img [src]="user.profilePicture" alt="Profile Picture" class="profile-pic">
+          <h2>{{ user.fullName }}</h2>
+          <p>Status: <span>{{ user.accountStatus }}</span></p>
+          <p>Account Number: <span>***{{ user.accountNumber.slice(-4) }}</span></p>
+        </div>
+  
+        <div class="account-overview">
+          <h3>Account Overview</h3>
+          <p><strong>Total Balance:</strong> ${{ user.balance.total }}</p>
+          <p><strong>Available Balance:</strong> ${{ user.balance.available }}</p>
+  
+          <h4>Recent Transactions</h4>
+          <ul>
+            <li *ngFor="let transaction of user.transactions">
+              {{ transaction.date }} - ${{ transaction.amount }} - {{ transaction.type }}
+            </li>
+          </ul>
+        </div>
+      </div>
+   
+  

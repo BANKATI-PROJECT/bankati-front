@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { MockAuthService } from '../../services/mock-auth.service'; // Update path as needed
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -8,20 +8,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
   standalone: true,
-  imports: [CommonModule,RouterModule],  
+  imports: [CommonModule, RouterModule],
 })
 export class NavbarComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: MockAuthService, private router: Router) {}
 
   isLoggedIn(): boolean {
-    console.log('bbbbbbbbbbbb',this.authService.isLoggedIn());
+    console.log('Logged in status:', this.authService.isLoggedIn());
     return this.authService.isLoggedIn();
   }
 
   isLoggedOut(): boolean {
     return this.authService.isLoggedOut();
   }
-  
 
   isAdmin(): boolean {
     return this.authService.isAdmin();
@@ -34,33 +33,24 @@ export class NavbarComponent {
   isClient(): boolean {
     return this.authService.isClient();
   }
-  
-  // autres méthodes du composant
 
+  // Logout method: Removes authentication data and redirects
   logout() {
     this.authService.logout().subscribe(
-      response => {
-        
-        // Supprimez les informations d'authentification stockées
-        localStorage.removeItem('token');
-        localStorage.removeItem('userRole');
-  
-        // Affichez une alerte pour informer l'utilisateur de la déconnexion réussie
+      () => {
+        // Already handling localStorage cleanup inside MockAuthService
         alert('Déconnexion réussie');
-        
-  
-        // Redirigez l'utilisateur vers une page appropriée, comme la page d'accueil
+
+        // Redirect to home or login page after successful logout
         this.router.navigate(['/']);
       },
-      error => {
-        // En cas d'erreur, affichez un message d'erreur dans une alerte
+      (error) => {
+        // Handle logout error (if any)
         alert('Erreur lors de la déconnexion : ' + error);
-  
-        // Redirigez l'utilisateur vers une page appropriée, comme la page d'accueil
+
+        // Redirect to home or login page in case of error
         this.router.navigate(['/']);
       }
     );
   }
-  
-  
 }

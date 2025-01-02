@@ -21,15 +21,15 @@
           <li *ngIf="isAgent()">
             <a href="/infos">Infos</a>
           </li>
-          <li *ngIf="isClient()">
+          <!-- <li *ngIf="isClient()">
             <a href="/profil">Profil</a>
           </li>
           <li *ngIf="isClient()">
-            <a href="/invoice-history">Historique</a>
-          </li>
+            <a href="/invoice-history">Historique</a> -->
+          <!-- </li>
           <li *ngIf="isClient()">
             <a href="/crianciers">Créanciers</a>
-          </li>
+          </li> -->
           <li *ngIf="isLoggedIn()">
             <button (click)="logout()">Déconnexion</button>
           </li>
@@ -40,4 +40,3 @@
       </nav>
     </div>
   </nav>
-  
