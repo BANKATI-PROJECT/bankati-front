@@ -1,0 +1,54 @@
+<!-- About Section -->
+<div class="container">
+    <!-- Welcome Section -->
+    <section class="main-section">
+      <div class="content">
+        <div class="left">
+          <h2>Payments made easy!</h2>
+          <p>Manage and pay all your bills from one secure, reliable platform. No more juggling multiple apps or websites.</p>
+          <ul>
+            <li>Consolidate all your bills in one place</li>
+            <li>Reliable and timely payments</li>
+          </ul>
+          <button class="get-started" routerLink="create-account">GET STARTED</button>
+        </div>
+        <div class="right">
+          <img src="../../../../public/bankati11.png" alt="Description of image">
+        </div>
+      </div>
+    </section>
+  
+    <!-- Agencies Overview -->
+    <section class="agencies-section">
+      <div class="agencies-list row">
+        <!-- Repeat for each agency -->
+        <div class="col-xs-12 col-sm-4" *ngFor="let agency of agencies">
+          <div class="agency-card card rounded">
+            <a class="img-card">
+              <img [src]="agency.imageUrl" alt="Agency Image" />
+            </a>
+            <div class="card-content">
+              <h4 class="card-title">
+                <a>{{ agency.name }}</a>
+              </h4>
+              <ul>
+                <li>Factures eau</li>
+                <li>Factures électricité</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  </div>
+  
+  <!-- Footer Section (Optional) -->
+  <!--
+  <footer class="footer">
+    <div class="container">
+      <p>© 2024 Tous droits réservés. | <a href="/contact">Nous contacter</a> | <a href="/mentions-legales">Mentions légales</a></p>
+    </div>
+  </footer>
+  -->
+  
