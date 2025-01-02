@@ -9,7 +9,7 @@ import { UnauthorizedComponent } from './components/unauthorized/unauthorized.co
 import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/about', pathMatch: 'full' }, // Make About the landing page
+    { path: '', redirectTo: '/about', pathMatch: 'full' }, 
     { path: 'about', component: AboutComponent },
     { path: 'login', component: LoginComponent },
     { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { role: 'ADMIN' } },
