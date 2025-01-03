@@ -1,3 +1,6 @@
+# Enable BuildKit if not already enabled
+# docker build --build-arg DOCKER_BUILDKIT=1 .
+
 # Stage 1: Build the Angular app
 FROM node:20-alpine as builder
 
@@ -10,8 +13,8 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
-# Build the Angular app
-RUN npm run build
+# Use BuildKit cache mount for node_modules
+RUN --mount=type=cache,id=s/eb433343-4ad1-40b7-b2ed-0cbd1d80d3dc-node_modules/cache,target=/app/node_modules/.cache npm run build
 
 # Stage 2: Serve the app with Nginx
 FROM nginx:alpine
