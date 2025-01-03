@@ -3,6 +3,7 @@ import { PriceService } from '../services/price.service';
 import { Chart, registerables } from 'chart.js';
 import { CommonModule } from '@angular/common';
 import 'chartjs-adapter-date-fns';  // Import the date adapter
+import { CONTRACT_ADDRESSES } from '../contracts/contract-addresses';  // Import the contract address mapping
 
 Chart.register(...registerables);
 
@@ -16,7 +17,10 @@ Chart.register(...registerables);
 export class ChartComponent implements OnInit, AfterViewInit {
   @ViewChild('priceChart') private chartRef!: ElementRef<HTMLCanvasElement>;
   private chart: Chart<'line', { x: number; y: number }[], unknown> | undefined;
-  tokens: string[] = ['ETH', 'BTC', 'USDC'];
+  tokens: string[] = [
+    'ETH', 'BTC', 'USDC', 'DAI', 'LINK', 'MATIC', 'USDT', 'UNI', 'AAVE', 
+    'SUSHI', 'COMP', 'CRV', 'YFI', 'MKR', 'SNX', 'BAL'  // Added more popular tokens
+  ];
   tokenPrices: { [key: string]: number } = {};
   selectedToken: string = 'ETH';  // Default selection set to ETH
   historicalPrices: { timestamp: string; value: number }[] = [];
@@ -139,5 +143,10 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
   getCurrentPrice(token: string): number {
     return this.tokenPrices[token] || 0;
+  }
+
+  // Get contract address and logo for the selected token
+  getTokenInfo(token: string) {
+    return CONTRACT_ADDRESSES[token];
   }
 }

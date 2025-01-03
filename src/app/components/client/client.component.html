@@ -1,4 +1,24 @@
 <div class="client-container">
-    <h1>Welcome to your Bank Account</h1>
-    <app-profile class="child-profile"></app-profile> <!-- Added custom class here -->
+  <h1>Welcome Again</h1>
+
+  <!-- Button to toggle between profile and wallet -->
+  <button (click)="toggleView()">Crypto Wallet</button>
+
+  <!-- Links/Buttons shown next to the welcome message -->
+  <div *ngIf="showWallet && !currentView" class="wallet-links">
+    <button (click)="setCurrentView('transactionHistory')">Transaction History</button>
+    <button (click)="setCurrentView('trade')">Trade</button>
+    <button (click)="setCurrentView('markets')">Markets</button>
   </div>
+
+  <!-- Conditionally render Profile or Wallet components -->
+  <app-profile *ngIf="!showWallet" class="child-profile"></app-profile>
+
+  <!-- Conditionally render Wallet if no other view is selected -->
+  <app-wallet *ngIf="showWallet && !currentView" class="child-wallet"></app-wallet>
+
+  <!-- Display Components based on currentView -->
+  <app-history *ngIf="currentView === 'transactionHistory'"></app-history>
+  <app-trade *ngIf="currentView === 'trade'"></app-trade>
+  <app-chart *ngIf="currentView === 'markets'"></app-chart>
+</div>

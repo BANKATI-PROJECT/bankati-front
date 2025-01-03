@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { MockAuthService } from './mock-auth.service'; // Ensure the correct path
+import { Observable, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { MockAuthService } from './mock-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,29 +13,38 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    const token = localStorage.getItem('authToken');
+  ): Observable<boolean> {
+    const token = localStorage.getItem('token');
     const userRole = localStorage.getItem('userRole');
+    
+    // Store the attempted URL for redirecting
+    localStorage.setItem('attemptedUrl', state.url);
 
     // Log values for debugging
     console.log('User Role:', userRole);
     console.log('Token:', token);
 
     if (token && userRole) {
-      const expectedRole = route.data['role']; // Expected role from route data
+      const expectedRole = route.data['role'];
       console.log('Expected Role:', expectedRole);
 
       if (userRole === expectedRole) {
-        return true; // User has the correct role
+        return of(true);
       } else {
-        console.error('Access denied - insufficient role');
-        this.router.navigate(['/unauthorized']); // Redirect to unauthorized page
-        return false;
+        return of(false).pipe(
+          tap(() => {
+            console.error('Access denied - insufficient role');
+            this.router.navigate(['/unauthorized']);
+          })
+        );
       }
     } else {
-      console.error('User not logged in or role missing');
-      this.router.navigate(['/login']); // Redirect to login page if not logged in
-      return false;
+      return of(false).pipe(
+        tap(() => {
+          console.error('User not logged in or role missing');
+          this.router.navigate(['/login']);
+        })
+      );
     }
   }
 }

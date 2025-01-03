@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MockAuthService } from '../../services/mock-auth.service'; // TO change in production
+import { MockAuthService } from '../../services/mock-auth.service'; // Update to your service
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { LoginResponse } from '../../services/mock-auth.service'; // Import the type for LoginResponse
+import { LoginResponse } from '../../services/mock-auth.service';
 
 @Component({
   standalone: true,
@@ -48,6 +48,9 @@ export class LoginComponent implements OnInit {
           // Simulate token payload extraction
           const tokenPayload = JSON.parse(atob(response.token.split('.')[1]));
           const userRole = response.role;
+          
+          // Save user role in localStorage
+          localStorage.setItem('userRole', userRole);
 
           if (userRole === 'ADMIN') {
             console.log('Redirection vers la page d\'administration');

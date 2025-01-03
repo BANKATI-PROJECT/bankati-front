@@ -10,7 +10,7 @@
             <a href="/">Home</a>
           </li>
           <li *ngIf="isAdmin()">
-            <a href="/agences">Agences</a>
+            <a href="/agences">Agencies</a>
           </li>
           <li *ngIf="isAdmin()">
             <a href="/agents">Agents</a>
@@ -22,6 +22,10 @@
             <a href="/infos">Infos</a>
           </li>
           <!-- <li *ngIf="isClient()">
+            <button (click)="toggleView()">Crypto Wallet</button>
+          </li> -->
+
+          <!-- <li *ngIf="isClient()">
             <a href="/profil">Profil</a>
           </li>
           <li *ngIf="isClient()">
@@ -31,10 +35,10 @@
             <a href="/crianciers">Créanciers</a>
           </li> -->
           <li *ngIf="isLoggedIn()">
-            <button (click)="logout()">Déconnexion</button>
+            <button (click)="logout()">Logout</button>
           </li>
           <li *ngIf="isLoggedOut()">
-            <a href="/login">Connexion</a>
+            <a href="/login">Login</a>
           </li>
         </ul>
       </nav>

@@ -60,8 +60,14 @@ export class WalletService {
 
     // Fetch ERC-20 token balances
     const tokenBalances: Token[] = [];
-    for (const [symbol, tokenAddress] of Object.entries(CONTRACT_ADDRESSES)) {
-      const checksumTokenAddress = ethers.getAddress(tokenAddress); // Ensure checksummed token address
+    for (const [symbol, tokenInfo] of Object.entries(CONTRACT_ADDRESSES)) {
+      if (tokenInfo.address === 'native token') {
+        // Handle ETH separately (skip this loop iteration for now)
+        continue;
+      }
+    
+      // Process all other tokens
+      const checksumTokenAddress = ethers.getAddress(tokenInfo.address);
       const balance = await this.getTokenBalance(this.wallet.address, checksumTokenAddress);
       tokenBalances.push({
         name: symbol,
@@ -76,7 +82,6 @@ export class WalletService {
 
   // Send transaction (ETH)
   async sendTransaction(to: string, amount: string): Promise<string> {
-    // const checksumTo = ethers.getAddress(to); // Ensure recipient address is checksummed
     const tx = await this.wallet.sendTransaction({
       to: to,
       value: ethers.parseEther(amount),
@@ -88,5 +93,15 @@ export class WalletService {
   disconnectWallet() {
     this.wallet = {} as ethers.Wallet;
     localStorage.removeItem('privateKey');
+  }
+
+  // Fetch token metadata based on the symbol
+  getTokenMetadata(symbol: string) {
+    const tokenInfo = CONTRACT_ADDRESSES[symbol.toUpperCase()];
+    if (tokenInfo) {
+      return tokenInfo;
+    } else {
+      throw new Error(`Token symbol ${symbol} not found.`);
+    }
   }
 }

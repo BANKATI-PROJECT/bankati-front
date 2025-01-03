@@ -1,7 +1,6 @@
 <!-- unauthorized.component.html -->
 <div class="unauthorized">
-    <h1>Unauthorized Access</h1>
-    <p>You do not have permission to access this page. Please contact your administrator.</p>
-    <button routerLink="/login">Go to Login</button>
-  </div>
-  
+  <h1>Unauthorized Access</h1>
+  <p>You do not have permission to access this page. Please contact your administrator.</p>
+  <button (click)="goBack()">Go Back</button>
+</div>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MockAuthService } from '../../services/mock-auth.service'; // Update path as needed
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { finalize } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,9 +14,10 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   constructor(private authService: MockAuthService, private router: Router) {}
+  
 
   isLoggedIn(): boolean {
-    console.log('Logged in status:', this.authService.isLoggedIn());
+    // console.log('Logged in status:', this.authService.isLoggedIn());
     return this.authService.isLoggedIn();
   }
 
@@ -35,22 +38,20 @@ export class NavbarComponent {
   }
 
   // Logout method: Removes authentication data and redirects
-  logout() {
-    this.authService.logout().subscribe(
-      () => {
-        // Already handling localStorage cleanup inside MockAuthService
-        alert('Déconnexion réussie');
-
-        // Redirect to home or login page after successful logout
-        this.router.navigate(['/']);
-      },
-      (error) => {
-        // Handle logout error (if any)
-        alert('Erreur lors de la déconnexion : ' + error);
-
-        // Redirect to home or login page in case of error
-        this.router.navigate(['/']);
-      }
-    );
+  logout(): void {
+    this.authService.logout()
+      .pipe(
+        finalize(() => {
+          window.location.href = '/about'; // Force a full page reload and navigation
+        })
+      )
+      .subscribe({
+        next: () => {
+          console.log('Logout successful');
+        },
+        error: (error) => {
+          console.error('Logout error:', error);
+        }
+      });
   }
 }
