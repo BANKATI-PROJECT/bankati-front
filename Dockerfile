@@ -20,7 +20,7 @@ FROM nginx:alpine
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy the built app to nginx html directory
-COPY --from=builder /app/dist/your-app-name/browser /usr/share/nginx/html
+COPY --from=builder /app/dist/bankati-front/browser /usr/share/nginx/html
 
 EXPOSE 80
 
