@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 import { RouterModule } from '@angular/router';
 import { WalletService } from '../services/wallet.service';
@@ -10,8 +12,10 @@ import { TransactionService } from '../services/transaction.service';
     templateUrl: './wallet.component.html',
     styleUrls: ['./wallet.component.css'],
     standalone: true,  // Set standalone to true
-    imports: [RouterModule, CommonModule]})
+    imports: [RouterModule, CommonModule,FontAwesomeModule]})
 export class WalletComponent implements OnInit {
+  faCopy = faCopy;
+
   ethBalance: string = '0';
   tokenBalances: { name: string; symbol: string; balance: string }[] = [];
   isWalletConnected: boolean = false;

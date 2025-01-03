@@ -97,6 +97,18 @@ button:hover {
 .wallet-info button:first-of-type:hover {
     background: linear-gradient(90deg, #ffaf50, #ff7f00);
 }
+.wallet-info button:first-of-type {
+    background: linear-gradient(90deg, #ff7f00, #ffaf50);
+    padding: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+.wallet-info button:first-of-type fa-icon {
+    font-size: 1.2rem;
+}
 
 /* Wallet Overview */
 .wallet-overview {
