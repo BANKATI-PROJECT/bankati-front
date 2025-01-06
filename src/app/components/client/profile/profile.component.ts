@@ -4,6 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'; // Import MatSiden
 import { MatButtonModule } from '@angular/material/button'; // If you use material buttons in the sidenav
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatIconModule } from '@angular/material/icon'; // Import MatIconModule for icons
+import { Router, RouterModule } from '@angular/router';
 
 // Define an interface for the user data structure (optional but recommended)
 interface User {
@@ -35,7 +36,7 @@ interface User {
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, MatButtonModule, MatSlideToggleModule, MatIconModule],
+  imports: [CommonModule, MatSidenavModule, MatButtonModule, MatSlideToggleModule, MatIconModule,RouterModule],
   encapsulation: ViewEncapsulation.None
 })
 export class ProfileComponent implements OnInit {
@@ -67,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
   isSidenavOpened: boolean = false; // This variable will toggle the sidenav
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     // You can make HTTP requests to get real user data here
@@ -84,8 +85,8 @@ export class ProfileComponent implements OnInit {
 
   navigateToCards() {
     console.log('Navigating to Cards page');
+    this.router.navigate(['/cards']); // Use Angular Router to navigate to the Cards page
   }
-
   navigateToSecurity() {
     console.log('Navigating to Security Settings page');
   }
@@ -93,6 +94,10 @@ export class ProfileComponent implements OnInit {
   navigateToPreferences() {
     console.log('Navigating to Preferences page');
   }
+  navigateToCreditCard() {
+    this.router.navigate(['/credit-card']); // Use Angular Router to navigate to the Credit Card page
+  }
+
 
   toggleSidenav() {
     this.isSidenavOpened = !this.isSidenavOpened; // Toggle the sidenav state

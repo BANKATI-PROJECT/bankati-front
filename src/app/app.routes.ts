@@ -8,6 +8,8 @@ import { ClientComponent } from './components/client/client.component';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';  // Import the UnauthorizedComponent
 import { AuthGuard } from './services/auth.guard';
 import { AddAgentComponent } from './components/admin/add-agent/add-agent.component';
+import { CardsComponent } from './components/client/cards/cards.component';
+import { CreditCardComponent } from './components/client/credit-card/credit-card.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/about', pathMatch: 'full' }, 
@@ -19,6 +21,8 @@ export const routes: Routes = [
     { path: 'agent', component: AgentComponent, canActivate: [AuthGuard], data: { role: 'AGENT' } },
     { path: 'client', component: ClientComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' } },
     { path: 'unauthorized', component: UnauthorizedComponent },
+    {path : 'cards', component : CardsComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' }},
+    {path: 'credit-card', component: CreditCardComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' }},
     // { path: '**', redirectTo: '/login' }
   ];
 
