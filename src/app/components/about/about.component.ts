@@ -10,12 +10,12 @@ import { CommonModule } from '@angular/common';
 })
 export class AboutComponent {
   agencies = [
-    { name: 'IAM RECHARGES', imageUrl: 'assets/agencies/IAM-image.jpg' },
-    { name: 'REDAL', imageUrl: 'assets/agencies/REDAL.jpeg' },
-    { name: 'AMANDIS TANGER', imageUrl: 'assets/agencies/AMANDIS.png' },
-    { name: 'IAM RECHARGES', imageUrl: 'assets/agencies/IAM-image.jpg' },
-    { name: 'AMANDIS TANGER', imageUrl: 'assets/agencies/AMANDIS.png' },
-    { name: 'REDAL', imageUrl: 'assets/agencies/REDAL.jpeg' }
+    { name: 'IAM RECHARGES', imageUrl: 'assets/images/IAM-image.jpg' },
+    { name: 'REDAL', imageUrl: 'assets/images/REDAL.jpeg' },
+    { name: 'AMANDIS TANGER', imageUrl: 'assets/images/AMANDIS.png' },
+    { name: 'IAM RECHARGES', imageUrl: 'assets/images/IAM-image.jpg' },
+    { name: 'AMANDIS TANGER', imageUrl: 'assets/images/AMANDIS.png' },
+    { name: 'REDAL', imageUrl: 'assets/images/REDAL.jpeg' }
     // Ajoutez d'autres agences ici
   ];
 }
