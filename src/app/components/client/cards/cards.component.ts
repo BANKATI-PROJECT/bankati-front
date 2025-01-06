@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../../../app.routes';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +28,16 @@ import { MatChipsModule } from '@angular/material/chips';
       
     FormsModule,
     ],
+=======
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  selector: 'app-cards',
+  templateUrl: './cards.component.html',
+  styleUrls: ['./cards.component.css']
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343
 })
 export class CardsComponent {
   cardHolder: string = 'Nom de l\'Utilisateur'; // You can set this based on user input or session
@@ -45,4 +56,8 @@ export class CardsComponent {
       alert("Veuillez entrer un montant valide");
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343

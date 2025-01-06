@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container py-5">
   <h1 class="text-center mb-5" style="color: rgb(29,52,84);"><strong>Le profil personnel</strong></h1>
   <hr />
@@ -9,6 +10,41 @@
       <div class="border rounded border-info p-2">
         <span class="m-2"><strong>Solde :</strong></span>
         <span class="badge bg-success rounded-pill">{{ balance }} Dh</span>
+=======
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav [opened]="isSidenavOpened" mode="push" class="sidebar">
+      <div class="sidebar-content">
+        <div class="quick-links">
+          <button mat-button (click)="navigateToBills()">Pay Bills</button>
+          <button mat-button (click)="navigateToTransfer()">Transfer Money</button>
+          <button mat-button (click)="navigateToCards()">My Cards</button>
+          <button mat-button (click)="navigateToCreditCard()">Credit card</button>
+          <button mat-button (click)="navigateToSecurity()">Security Settings</button>
+        </div>
+  
+        <div class="notifications">
+          <h3>Notifications</h3>
+          <ul>
+            <li *ngFor="let notification of user.notifications">
+              {{ notification.message }} - {{ notification.date }}
+            </li>
+          </ul>
+        </div>
+  
+        <div class="preferences">
+          <h3>Account Preferences</h3>
+          <button mat-button (click)="navigateToPreferences()">Change Preferences</button>
+        </div>
+  
+        <div class="security-alerts">
+          <h3>Recent Security Alerts</h3>
+          <ul>
+            <li *ngFor="let alert of user.securityAlerts">
+              {{ alert.date }} - {{ alert.message }}
+            </li>
+          </ul>
+        </div>
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343
       </div>
       
       <!-- Icone pour ouvrir le champ de saisie -->

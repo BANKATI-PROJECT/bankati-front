@@ -7,6 +7,7 @@ import { AgentComponent } from './components/agent/agent.component';
 import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';  // Import the UnauthorizedComponent
 import { AuthGuard } from './services/auth.guard';
 import { AddAgentComponent } from './components/admin/add-agent/add-agent.component';
+<<<<<<< HEAD
 import { AgencesComponent } from './components/client/agences/agences.component';
 import { ProfileComponent } from './components/client/profile/profile.component';
 import { PayeFormComponent } from './components/client/paye-form/paye-form.component';
@@ -15,6 +16,10 @@ import { CardsComponent } from './components/client/cards/cards.component';
 import { TransferMoneyComponent } from './components/client/transfer-money/transfer-money.component';
 import { CreditCartComponent } from './components/client/credit-cart/credit-cart.component';
 import { ClientComponent } from './components/client/client/client.component';
+=======
+import { CardsComponent } from './components/client/cards/cards.component';
+import { CreditCardComponent } from './components/client/credit-card/credit-card.component';
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343
 
 export const routes: Routes = [
     { path: '', redirectTo: '/about', pathMatch: 'full' }, 
@@ -26,6 +31,7 @@ export const routes: Routes = [
     { path: 'agent', component: AgentComponent, canActivate: [AuthGuard], data: { role: 'AGENT' } },
     { path: 'client', component: ClientComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' } },
     { path: 'unauthorized', component: UnauthorizedComponent },
+<<<<<<< HEAD
     { path: 'crianciers', component:AgencesComponent  },
     { path: 'profile', component: ProfileComponent },
    
@@ -34,6 +40,10 @@ export const routes: Routes = [
     { path: 'cards', component: CardsComponent },
     { path: 'transfer-money', component:TransferMoneyComponent  },
     { path: 'credit-cart', component:CreditCartComponent },
+=======
+    {path : 'cards', component : CardsComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' }},
+    {path: 'credit-card', component: CreditCardComponent, canActivate: [AuthGuard], data: { role: 'CLIENT' }},
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343
     // { path: '**', redirectTo: '/login' }
   ];
 

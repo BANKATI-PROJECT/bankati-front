@@ -11,10 +11,13 @@
     text-transform: uppercase;
 }
 
+<<<<<<< HEAD
  h3 {
     color: black !important;
   }
 
+=======
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343
 .container {
     min-height: 100vh;
     background: #eee;
@@ -113,4 +116,8 @@ form .submit-btn:hover {
     display: flex;
     justify-content: space-between;
     font-size: 14px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 086210ad6ce451818ed58e20ff86b0c8866d4343
